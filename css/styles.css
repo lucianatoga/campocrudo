@@ -1,0 +1,28 @@
+body{
+    margin: 0;
+    background-color: ivory;
+}
+.header{
+    height: 15rem;
+    margin: 0;
+    background-image:url("../img/header-bg.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.header-cover{
+    position:absolute;
+    background-color: rgba(0, 0, 0, 0.178); 
+    height: 15rem;
+    width: 100%;
+}
+.header h1{
+    margin: 0;
+    align-self: center;
+    font-family: "EB Garamond", serif;
+    font-weight: lighter;
+    font-size: 2.5rem;
+}
