@@ -3,7 +3,7 @@ body{
     background-color: ivory;
 }
 .header{
-    height: 15rem;
+    height: 12rem;
     margin: 0;
     background-image:url("../img/header-bg.jpg");
     background-position: center;
@@ -11,18 +11,38 @@ body{
     background-repeat: no-repeat;
     position: relative;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
-.header-cover{
-    position:absolute;
-    background-color: rgba(0, 0, 0, 0.178); 
-    height: 15rem;
-    width: 100%;
+
+.header-superior{
+    height: 6rem;
+    display: flex;
+    align-items: end;
 }
-.header h1{
+
+.header-superior h1{
     margin: 0;
-    align-self: center;
     font-family: "EB Garamond", serif;
     font-weight: lighter;
     font-size: 2.5rem;
+}
+.header-inferior{
+    height: 6rem;
+    display: flex;
+    align-items: end;
+}
+.menu-list{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0.8rem;
+    gap: 1rem;
+}
+.menu-list a{
+    text-decoration: none;
+    color: black;
+    font-family: "EB Garamond", serif;
+    font-size: 1.5rem;
 }

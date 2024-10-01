@@ -51,4 +51,4 @@ while(seguir.toLowerCase()!="no"){
     }
 }
 
-console.log("El precio total final es: $"+precioTotal +" - Gracias por su compra.");
+console.log("El precio total final es: $"+precioTotal +" - Gracias por su compra!");
