@@ -1,9 +1,11 @@
 body{
     margin: 0;
     background-color: ivory;
+    font-family: "EB Garamond", serif;
 }
+
+/* HEADER */
 .header{
-    height: 12rem;
     margin: 0;
     background-image:url("../img/header-bg.jpg");
     background-position: center;
@@ -13,25 +15,26 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: black;
 }
 
 .header-superior{
     height: 6rem;
     display: flex;
     align-items: end;
+    justify-content: center;
 }
 
 .header-superior h1{
     margin: 0;
-    font-family: "EB Garamond", serif;
     font-weight: lighter;
     font-size: 2.5rem;
 }
 .header-inferior{
-    height: 6rem;
     display: flex;
     align-items: end;
 }
+
 .menu-list{
     list-style: none;
     display: flex;
@@ -45,4 +48,65 @@ body{
     color: black;
     font-family: "EB Garamond", serif;
     font-size: 1.5rem;
+}
+
+/* MAIN */
+main{
+    margin: 1rem;
+}
+.cards-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 25rem);
+    margin: 1.5rem 0 1.5rem 0;
+    justify-content: center;
+}
+.preview-card{
+    margin: 1rem;
+    padding: 0.5rem;
+    height: 20rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(250, 225, 244, 0.397);
+    box-shadow: 3px 3px 8px 10px rgba(188, 143, 143, 0.692);
+    transition: 0.5s;
+}
+.preview-card:hover{
+    box-shadow: 3px 3px 8px 15px rgba(188, 143, 143, 0.692);
+    height: 20.3rem;
+}
+.preview-card h3{
+    writing-mode: vertical-lr;
+}
+
+/* FOOTER */
+
+.footer p{
+    text-align: center;
+    font-size: 12px;
+    margin: 0;
+}
+
+/* MEDIA QUERY */
+@media only screen and (max-width:575px){
+    .header-superior{
+        align-items: center;
+    }
+    .header-superior h1{
+        font-size: 2.2rem;
+    }
+    .header-inferior{
+        justify-content: center;
+    }
+    .menu-list{
+        flex-direction: column;
+        align-items: center;
+    }
+    .preview-card{
+        height: 15rem;
+    }
+    .preview-card:hover{
+        box-shadow: 3px 3px 8px 15px rgba(188, 143, 143, 0.692);
+        height: 15.3rem;
+    }
 }

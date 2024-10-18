@@ -45,7 +45,7 @@ if(seguir==="si"){
             productoElegido=prompt("Qué producto desea comprar? Ingrese uno de los siguientes: " + productosNombres);
         }
         cantidad=prompt("Qué cantidad?");
-        while(isNaN(cantidad)){
+        while(isNaN(cantidad)||cantidad==""){
             alert("Entrada inválida. Por favor ingrese solamente caracteres numéricos");
             cantidad=prompt("Qué cantidad?");
         }
