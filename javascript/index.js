@@ -32,7 +32,7 @@ productos.forEach((producto)=>{
         <h3>${producto.nombre}</h3>
         <button onclick="comprar('${producto.id}')">&#10010</button>
     </div>
-    <img src=".././img/${producto.nombre}.jpg" height="100%">
+    <img src="./img/${producto.nombre}.jpg" height="100%">
     `;
     cards_container.appendChild(preview_card);
 })
