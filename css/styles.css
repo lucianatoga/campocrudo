@@ -37,9 +37,10 @@ body{
     /* align-items: end; */
 }
 .carritoButton{
-    background-color: rgba(240, 248, 255, 0);
+    background-color: rgba(24, 33, 41, 0.178);
     border: none;
-    font-size: larger;
+    border-radius: 10%;
+    font-size: 1.5rem;
 }
 
 .menu-list{

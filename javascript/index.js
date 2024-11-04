@@ -7,20 +7,18 @@ class producto{
 }
 
 let productos=[new producto(1,"aros",400), new producto(2,"collar",350),new producto(3,"cinto",1500)];
-
-let precioTotal=0;
-let productoElegido;
-let cantidad=0;
-let enviar;
-let envio=150;
+let carritoVisible=false;
 
 function comprar(id){
-    productoElegido=productos.find((el)=>el.id==id);
+    const producto_elegido=productos.find((el)=>el.id==id);
     const carrito=JSON.parse(localStorage.getItem('carrito'))||[];
 
-    const productoEnCarrito=carrito.find((el)=>el.id==id);
-    productoEnCarrito ? productoEnCarrito.cantidad++ : carrito.push({...productoElegido, cantidad:1});
+    const producto_en_carrito=carrito.find((el)=>el.id==id);
+    producto_en_carrito ? producto_en_carrito.cantidad++ : carrito.push({...producto_elegido, cantidad:1});
     localStorage.setItem('carrito', JSON.stringify(carrito));
+    if(carritoVisible){
+        mostrarCarrito()
+    };
 }
 
 const cards_container=document.getElementById("cards-container");
@@ -38,11 +36,12 @@ productos.forEach((producto)=>{
 })
 
 function mostrarCarrito(){
+    let precioTotal=0;
     const carrito_section=document.getElementById("carrito-preview-section"); //mostrar nueva seccion en html con datos del carrito
     carrito_section.innerHTML=`
     <hr>
     <h2>Carrito</h2>`;
-    const carrito=JSON.parse(localStorage.getItem('carrito'));
+    const carrito=JSON.parse(localStorage.getItem('carrito'))||[];
     carrito.forEach(({id,nombre, precio, cantidad})=>{
         carrito_section.innerHTML+=`
             <p>- ${nombre} $${precio} x${cantidad}</p>
@@ -57,6 +56,7 @@ function mostrarCarrito(){
     <button onclick="limpiarCarrito()">Limpiar</button>
     `;
     carrito_section.appendChild(resumen_section);
+    carritoVisible=true;
 }
 const carrito_button=document.getElementById("carritoButton");
 carrito_button.addEventListener('click', function(){
@@ -65,6 +65,6 @@ carrito_button.addEventListener('click', function(){
 
 function limpiarCarrito(){
     localStorage.clear();
-    window.location.href="../index.html";
+    location.reload();
 }
 
