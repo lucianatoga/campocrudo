@@ -23,6 +23,7 @@ body{
     display: flex;
     align-items: end;
     justify-content: center;
+    width: 100%;
 }
 
 .header-superior h1{
@@ -30,9 +31,15 @@ body{
     font-weight: lighter;
     font-size: 2.5rem;
 }
+
 .header-inferior{
     display: flex;
-    align-items: end;
+    /* align-items: end; */
+}
+.carritoButton{
+    background-color: rgba(240, 248, 255, 0);
+    border: none;
+    font-size: larger;
 }
 
 .menu-list{
@@ -74,6 +81,16 @@ main{
 .preview-card:hover{
     box-shadow: 3px 3px 8px 15px rgba(188, 143, 143, 0.692);
     height: 20.3rem;
+}
+.card-title-button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+.card-title-button button{
+    border: none;
+    box-shadow: 1px 1px 8px 5px rgba(188, 143, 143, 0.692);
 }
 .preview-card h3{
     writing-mode: vertical-lr;
