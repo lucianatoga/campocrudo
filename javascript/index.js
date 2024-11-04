@@ -1,24 +1,24 @@
 class producto{
-    constructor(nombre, precio){
+    constructor(id, nombre, precio){
+        this.id=id;
         this.nombre=nombre;
         this.precio=precio;
     }
 }
 
-let productos=[new producto("aros",400), new producto("collar",350),new producto("cinto",1500)];
+let productos=[new producto(1,"aros",400), new producto(2,"collar",350),new producto(3,"cinto",1500)];
 
 let precioTotal=0;
 let productoElegido;
 let cantidad=0;
 let enviar;
 let envio=150;
-let carrito;
 
-function comprar(nombreProducto){
-    productoElegido=productos.find((el)=>el.nombre==nombreProducto);
-    carrito=JSON.parse(localStorage.getItem('carrito'))||[];//traigo el carrito - get and parse
+function comprar(id){
+    productoElegido=productos.find((el)=>el.id==id);
+    const carrito=JSON.parse(localStorage.getItem('carrito'))||[];//traigo el carrito - get and parse
 
-    const productoEnCarrito=carrito.find((el)=>el.nombre==nombreProducto);
+    const productoEnCarrito=carrito.find((el)=>el.id==id);
     productoEnCarrito ? productoEnCarrito.cantidad++ : carrito.push({...productoElegido, cantidad:1});//modifico la cantidad del producto o lo agrego
     localStorage.setItem('carrito', JSON.stringify(carrito));//vuelvo a mandarlo - stringify and set
 }
@@ -30,7 +30,7 @@ productos.forEach((producto)=>{
     preview_card.innerHTML=`
     <div class="card-title-button">
         <h3>${producto.nombre}</h3>
-        <button onclick="comprar('${producto.nombre}')">&#10010</button>
+        <button onclick="comprar('${producto.id}')">&#10010</button>
     </div>
     <img src=".././img/${producto.nombre}.jpg" height="100%">
     `;
@@ -42,14 +42,30 @@ productos.forEach((producto)=>{
 function mostrarCarrito(){
     const carrito_section=document.getElementById("carrito-preview-section"); //mostrar nueva seccion en html con datos del carrito
     carrito_section.innerHTML=`<h2>Carrito</h2>`;
-    carrito.forEach((producto)=>{
+    const carrito=JSON.parse(localStorage.getItem('carrito'));
+    carrito.forEach(({id,nombre, precio, cantidad})=>{
         carrito_section.innerHTML+=`
-            <p>'${producto.nombre} ${producto.precio} X${producto.cantidad}'</p>
+            <p>${nombre} $${precio} x${cantidad}</p>
+            <button onclick="quitarDelCarrito(${id})>quitar</button>
         `;
+        precioTotal+=(precio*cantidad);
     });
     const resumen_section=document.createElement("div");
-    resumen_section.innerHTML=`<p>Total: </p>`;
+    resumen_section.innerHTML+=`<p>Total: $${precioTotal}</p>`;
+    carrito_section.appendChild(resumen_section);
 }
+const carrito_button=document.getElementById("carritoButton");
+carrito_button.addEventListener('click', function(){
+    mostrarCarrito();
+})
+
+function quitarDelCarrito(id){
+    const carrito=JSON.parse(localStorage.getItem('carrito'));
+    const productoEnCarrito=carrito.find((el)=>el.id==id);
+    carrito.splice((carrito.indexOf(productoEnCarrito)),1);
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+}
+
 // function validarSioNo(entrada, mensaje){
 //     while(entrada.toLowerCase()!="no"&&entrada.toLowerCase()!="si"){
 //         alert("Entrada inválida. Por favor ingrese solamente 'si' o 'no'");
@@ -104,11 +120,5 @@ function mostrarCarrito(){
 //     console.log("Gracias por visitarnos!");
 // }
 
-// const agregar_aros_button=document.getElementById("agregarAros");
-// const agregar_collar_button=document.getElementById("agregarCollar");
-// const agregar_cinto_button=document.getElementById("agregarCinto");
-// agregar_aros_button.addEventListener('click',function(){
-//     comprar("aros",cantidad);
-//     localStorage.setItem("carrito", JSON.stringify(compras));
-// });
+
 
