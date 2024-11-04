@@ -95,6 +95,10 @@ main{
 .preview-card h3{
     writing-mode: vertical-lr;
 }
+.resumenSection button{
+    border: none;
+    box-shadow: 1px 1px 8px 5px rgba(188, 143, 143, 0.692)
+}
 
 /* FOOTER */
 
