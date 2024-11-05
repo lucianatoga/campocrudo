@@ -37,15 +37,14 @@ productos.forEach((producto)=>{
 
 function mostrarCarrito(){
     let precioTotal=0;
-    const carrito_section=document.getElementById("carrito-preview-section"); //mostrar nueva seccion en html con datos del carrito
+    const carrito_section=document.getElementById("carrito-preview-section");
     carrito_section.innerHTML=`
     <hr>
     <h2>Carrito</h2>`;
     const carrito=JSON.parse(localStorage.getItem('carrito'))||[];
-    carrito.forEach(({id,nombre, precio, cantidad})=>{
+    carrito.forEach(({nombre, precio, cantidad})=>{
         carrito_section.innerHTML+=`
             <p>- ${nombre} $${precio} x${cantidad}</p>
-            
         `;
         precioTotal+=(precio*cantidad);
     });
