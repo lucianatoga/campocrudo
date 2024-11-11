@@ -17,7 +17,7 @@ function comprar(id){
     producto_en_carrito ? producto_en_carrito.cantidad++ : carrito.push({...producto_elegido, cantidad:1});
     localStorage.setItem('carrito', JSON.stringify(carrito));
     if(carritoVisible){
-        mostrarCarrito()
+        mostrarCarrito();
     };
 }
 
@@ -28,7 +28,7 @@ productos.forEach((producto)=>{
     preview_card.innerHTML=`
     <div class="card-title-button">
         <h3>${producto.nombre}</h3>
-        <button onclick="comprar('${producto.id}')">&#10010</button>
+        <button class="pink-shadow-button" onclick="comprar('${producto.id}')">&#10010</button>
     </div>
     <img src="./img/${producto.nombre}.jpg" height="100%">
     `;
@@ -42,9 +42,9 @@ function mostrarCarrito(){
     <hr>
     <h2>Carrito</h2>`;
     const carrito=JSON.parse(localStorage.getItem('carrito'))||[];
-    carrito.forEach(({nombre, precio, cantidad})=>{
+    carrito.forEach(({id, nombre, precio, cantidad})=>{
         carrito_section.innerHTML+=`
-            <p>- ${nombre} $${precio} x${cantidad}</p>
+            <p>- ${nombre} $${precio} x${cantidad} <button class="pink-shadow-button" onclick="quitarDelCarrito('${id}')">&#8722</button></p>
         `;
         precioTotal+=(precio*cantidad);
     });
@@ -52,7 +52,7 @@ function mostrarCarrito(){
     resumen_section.className="resumenSection";
     resumen_section.innerHTML+=`
     <p><b>Total: $${precioTotal}</b></p>
-    <button onclick="limpiarCarrito()">Limpiar</button>
+    <button class="pink-shadow-button" onclick="limpiarCarrito()">Limpiar</button>
     `;
     carrito_section.appendChild(resumen_section);
     carritoVisible=true;
@@ -62,8 +62,21 @@ carrito_button.addEventListener('click', function(){
     mostrarCarrito();
 })
 
+function quitarDelCarrito(id){
+    const carrito=JSON.parse(localStorage.getItem('carrito'));
+    const producto_en_carrito=carrito.find((el)=>el.id==id);
+    producto_en_carrito.cantidad>1 ? producto_en_carrito.cantidad-- : carrito.splice(carrito.indexOf(producto_en_carrito),1);
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    if(carritoVisible){
+        mostrarCarrito();
+    };
+}
+
 function limpiarCarrito(){
     localStorage.clear();
-    location.reload();
+    //location.reload();
+    const carrito_section=document.getElementById("carrito-preview-section");
+    carrito_section.innerHTML='';
+    carritoVisible=false;
 }
 
