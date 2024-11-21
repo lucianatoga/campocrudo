@@ -1,6 +1,6 @@
 const productos_stock=[];
 async function traerProductos(){
-        const response= await fetch("../data/productos.json");
+        const response= await fetch("../productos.json");
         const json= await response.json();
         if(document.getElementById("categories-container")){
             displayCategories(json.productos);
