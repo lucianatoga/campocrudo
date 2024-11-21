@@ -1,0 +1,172 @@
+{
+    "productos":[
+        {
+            "id":1,
+            "nombre":"aros agata marron",
+            "precio": 700,
+            "stock":10,
+            "img":"./img/aros-agata-marron.jpg",
+            "categoria":"aros"
+        },
+        {
+            "id":2,
+            "nombre":"aros circulo nacar",
+            "precio": 600,
+            "stock":10,
+            "img":"./img/aros-circulo-nacar.jpg",
+            "categoria":"aros"
+        },
+        {
+            "id":3,
+            "nombre":"aros cuadrado nacar",
+            "precio": 600,
+            "stock":10,
+            "img":"./img/aros-cuadrado-nacar.jpg",
+            "categoria":"aros"
+        },
+        {
+            "id":4,
+            "nombre":"aros colgante hojas",
+            "precio": 500,
+            "stock":10,
+            "img":"./img/aros-colgante-hoja.jpg",
+            "categoria":"aros"
+        },
+        {
+            "id":5,
+            "nombre":"aros hojas",
+            "precio": 400,
+            "stock":10,
+            "img":"./img/aros-hojas.jpg",
+            "categoria":"aros"
+        },
+        {
+            "id":6,
+            "nombre":"cinto agata azul",
+            "precio": 2000,
+            "stock":10,
+            "img":"./img/cinto-agata-azul.jpg",
+            "categoria":"cintos"
+        },
+        {
+            "id":7,
+            "nombre":"cinto agata marron",
+            "precio": 2000,
+            "stock":10,
+            "img":"./img/cinto-agata-marron.jpg",
+            "categoria":"cintos"
+        },
+        {
+            "id":8,
+            "nombre":"cinto agata turquesa",
+            "precio": 2000,
+            "stock":10,
+            "img":"./img/cinto-agata-turquesa.jpg",
+            "categoria":"cintos"
+        },
+        {
+            "id":9,
+            "nombre":"cinto agata fucsia",
+            "precio": 2000,
+            "stock":10,
+            "img":"./img/cinto-agata-fucsia.jpg",
+            "categoria":"cintos"
+        },
+        {
+            "id":10,
+            "nombre":"cinto nacar cuadrado",
+            "precio": 1700,
+            "stock":10,
+            "img":"./img/cinto-nacar-cuadrado.jpg",
+            "categoria":"cintos"
+        },
+        {
+            "id":11,
+            "nombre":"cinto nacar irregular",
+            "precio": 1700,
+            "stock":10,
+            "img":"./img/cinto-nacar-irregular.jpg",
+            "categoria":"cintos"
+        },
+        {
+            "id":12,
+            "nombre":"cinto nacar irregular partido",
+            "precio": 1700,
+            "stock":10,
+            "img":"./img/cinto-nacar-irregular-partido.jpg",
+            "categoria":"cintos"
+        },
+        {
+            "id":13,
+            "nombre":"cinto nacar ovalo",
+            "precio": 1700,
+            "stock":10,
+            "img":"./img/cinto-nacar-ovalo.jpg",
+            "categoria":"cintos"
+        },
+        {
+            "id":14,
+            "nombre":"cinto nacar triangulo",
+            "precio": 1700,
+            "stock":10,
+            "img":"./img/cinto-nacar-triangulo.jpg",
+            "categoria":"cintos"
+        },
+        {
+            "id":15,
+            "nombre":"cinto nacar triangulos",
+            "precio": 1700,
+            "stock":10,
+            "img":"./img/cinto-nacar-triangulos.jpg",
+            "categoria":"cintos"
+        },
+        {
+            "id":16,
+            "nombre":"faja irregular",
+            "precio": 1500,
+            "stock":10,
+            "img":"./img/faja-irregular.jpg",
+            "categoria":"cintos"
+        },
+        {
+            "id":17,
+            "nombre":"cadena dorada",
+            "precio": 400,
+            "stock":10,
+            "img":"./img/cadena-dorada.jpg",
+            "categoria":"collares"
+        },
+        {
+            "id":18,
+            "nombre":"cadena plateada con nacar",
+            "precio":700,
+            "stock":10,
+            "img":"./img/cadena-plateada-nacar.jpg",
+            "categoria":"collares"
+        },
+        {
+            "id":19,
+            "nombre":"brazalete nacar",
+            "precio": 800,
+            "stock":10,
+            "img":"./img/brazaletes-nacar.jpg",
+            "categoria":"otros"
+        },
+        {
+            "id":20,
+            "nombre":"matera de cuero",
+            "precio": 2000,
+            "stock":10,
+            "img":"./img/matera.jpg",
+            "categoria":"otros"
+        },
+        {
+            "id":21,
+            "nombre":"cartera de cuero croco",
+            "precio": 3000,
+            "stock":10,
+            "img":"./img/carteras-croco.jpg",
+            "categoria":"otros"
+        }
+    ]
+}

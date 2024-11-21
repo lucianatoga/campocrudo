@@ -37,7 +37,7 @@ body{
     /* align-items: end; */
 }
 .carritoButton{
-    background-color: rgba(24, 33, 41, 0.178);
+    background-color: rgba(24, 33, 41, 0);
     border: none;
     border-radius: 10%;
     font-size: 1.5rem;
@@ -64,9 +64,16 @@ main{
 }
 .cards-container{
     display: grid;
-    grid-template-columns: repeat(auto-fill, 25rem);
+    grid-template-columns: repeat(auto-fill, 20rem);
     margin: 1.5rem 0 1.5rem 0;
     justify-content: center;
+}
+.cards-container a{
+    text-decoration: none;
+    color: black;
+    box-shadow: 1px 1px 8px 5px rgba(188, 143, 143, 0.692);
+    padding: 0 8px;
+    font-weight: 500;
 }
 .preview-card{
     margin: 1rem;
@@ -93,7 +100,7 @@ main{
     border: none;
     box-shadow: 1px 1px 8px 5px rgba(188, 143, 143, 0.692);
 }
-.preview-card h3{
+.preview-card h4, h3{
     writing-mode: vertical-lr;
 }
 
