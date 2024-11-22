@@ -41,7 +41,7 @@ function displayProductos(productos){
             preview_card.innerHTML=`
             <div class="card-title-button">
                 <h4>${producto.nombre}</h4>
-                <button class="pink-shadow-button" onclick="comprar('${producto.id}')">&#10010</button>
+                <button id="comprar-button" class="pink-shadow-button" onclick="comprar('${producto.id}')">&#10010</button>
             </div>
             <img src=".${producto.img}" height="100%">
             `;
@@ -62,28 +62,41 @@ function comprar(id){
     if(carritoVisible){
         mostrarCarrito();
     };
+    Toastify({
+        text: "✔",
+        duration: 1000,
+        className: "notificacion",
+        backgroundColor:"rgba(188, 143, 143, 0.692)"
+    }).showToast();
 }
 
 function mostrarCarrito(){
     let precioTotal=0;
     const carrito_section=document.getElementById("carrito-preview-section");
     carrito_section.innerHTML=`
-    <hr>
     <h2>Carrito</h2>`;
-    const carrito=JSON.parse(localStorage.getItem('carrito'))||[];
-    carrito.forEach(({id, nombre, precio, cantidad})=>{
-        carrito_section.innerHTML+=`
-            <p>- ${nombre} $${precio} x${cantidad} <button class="pink-shadow-button" onclick="quitarDelCarrito('${id}')">&#8722</button></p>
-        `;
-        precioTotal+=(precio*cantidad);
-    });
     const resumen_section=document.createElement("div");
     resumen_section.className="resumenSection";
-    resumen_section.innerHTML+=`
-    <p><b>Total: $${precioTotal}</b></p>
-    <button class="pink-shadow-button" onclick="limpiarCarrito()">Limpiar</button>
-    `;
+    const carrito=JSON.parse(localStorage.getItem('carrito'))||[];
+    if(carrito.length<1){
+        resumen_section.innerHTML+=`
+        <p>El carrito está vacío</p>
+        <button class="pink-shadow-button" onclick="cerrarCarrito()">Cerrar</button>`;
+    }
+    else{
+        carrito.forEach(({id, nombre, precio, cantidad})=>{
+            carrito_section.innerHTML+=`
+                <p>- ${nombre} $${precio} x${cantidad} <button class="pink-shadow-button" onclick="quitarDelCarrito('${id}')">&#8722</button></p>
+            `;
+            precioTotal+=(precio*cantidad);
+        });
+        resumen_section.innerHTML+=`
+        <p><b>Total: $${precioTotal}</b></p>
+        <button class="pink-shadow-button" onclick="limpiarCarrito()">Limpiar</button>
+        `;
+    }
     carrito_section.appendChild(resumen_section);
+    carrito_section.style.display="block"
     carritoVisible=true;
 }
 const carrito_button=document.getElementById("carritoButton");
@@ -102,10 +115,33 @@ function quitarDelCarrito(id){
 }
 
 function limpiarCarrito(){
-    localStorage.clear();
-    //location.reload();
-    const carrito_section=document.getElementById("carrito-preview-section");
-    carrito_section.innerHTML='';
-    carritoVisible=false;
+    Swal.fire({
+        title: "Deseas limpiar el carrito?",
+        text: "Se borrará todo lo guardado",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "rgb(207, 154, 154)",
+        cancelButtonColor: "rgba(88, 74, 74, 0.692)",
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Limpiar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+            localStorage.clear();
+            const carrito_section=document.getElementById("carrito-preview-section");
+            carrito_section.style.display="none";
+            carritoVisible=false;
+            Swal.fire({
+                title: "Listo!",
+                icon: "success",
+                confirmButtonColor:"rgb(207, 154, 154)"
+            });
+        }
+      });
+    
+    
 }
 
+function cerrarCarrito(){
+    const carrito_section=document.getElementById("carrito-preview-section");
+    carrito_section.style.display="none";
+}
