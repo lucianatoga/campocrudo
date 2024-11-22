@@ -92,7 +92,10 @@ function mostrarCarrito(){
         });
         resumen_section.innerHTML+=`
         <p><b>Total: $${precioTotal}</b></p>
-        <button class="pink-shadow-button" onclick="limpiarCarrito()">Limpiar</button>
+        <div class="carrito-buttons">
+            <button class="pink-shadow-button" onclick="limpiarCarrito()">Limpiar</button>
+            <button class="pink-shadow-button" onclick="cerrarCarrito()">Cerrar</button>
+        </div>
         `;
     }
     carrito_section.appendChild(resumen_section);
@@ -144,4 +147,5 @@ function limpiarCarrito(){
 function cerrarCarrito(){
     const carrito_section=document.getElementById("carrito-preview-section");
     carrito_section.style.display="none";
+    carritoVisible=false;
 }
