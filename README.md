@@ -1,7 +1,9 @@
 ##DISCLAMER## Respecto a la lectura del json.
+
 Intenté cambiando la ruta que le paso al fetch de todas formas, cambiando el lugar del json, borrando cache, ect y no hubo forma de que GitHub me leyera el json. La consola me devuelve el error 404 y si reviso la ruta que hace para buscar el json, veo que esta buscandolo fuera del proyecto https://lucianatoga.github.io/productos.json. Si yo ingreso manualmente en barra buscadora la siguiente ruta https://lucianatoga.github.io/campocrudo/productos.json, el json se abre correctamente. Busqué por todos lados una solución y dí con varias publicaciones en foros comentando el mismo problema, así que concluí que es un tema de GitHub pages, además de que cuando lo deployé a Netlify, no hubo problemas. 
 
 ##GUÍA PARA NAVEGAR LA PÁGINA##
+
 En el Inicio se encuentran las crads con las categorías de productos disponibles. Para ver los productos de cada una, se puede seleccionar el boton "ver" en la cards o el link correspondiente en el menú de navegación.
 
 Para agregar productos al carrito se selecciona el botón "+" presente en la card de cada producto. De esta forma son almacenadas en local storage. 
