@@ -95,13 +95,14 @@ main{
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
+    justify-content: center;
 }
 .pink-shadow-button{
     border: none;
     box-shadow: 1px 1px 8px 5px rgba(188, 143, 143, 0.692);
 }
 .preview-card h4, h3{
-    writing-mode: vertical-lr;
+    writing-mode: vertical-rl;
 }
 .notificacion{
     width: 1.5rem;
@@ -163,6 +164,9 @@ main{
     .preview-card:hover{
         box-shadow: 3px 3px 8px 15px rgba(188, 143, 143, 0.692);
         height: 15.3rem;
+    }
+    .card-title-button{
+        height: 14rem;
     }
     .carrito-preview-section{
         width: 17rem;
