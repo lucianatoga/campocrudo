@@ -50,12 +50,22 @@ function displayProductos(productos){
     })
 }
 
+//CARRITO//
+
+function contarProductos(){
+    let contador=0;
+    const carrito=JSON.parse(localStorage.getItem('carrito'))||[];
+    carrito.length===0 ? contador=0 : carrito.forEach(producto=>contador+=producto.cantidad);
+    const contador_html=document.getElementById("contador");
+    contador_html.innerHTML=`${contador}`;
+}
+contarProductos();
+
 let carritoVisible=false;
 
 function comprar(id){
     const producto_elegido=productos_stock.find((producto)=>producto.id==id);
     const carrito=JSON.parse(localStorage.getItem('carrito'))||[];
-
     const producto_en_carrito=carrito.find((producto)=>producto.id==id);
     producto_en_carrito ? producto_en_carrito.cantidad++ : carrito.push({...producto_elegido, cantidad:1});
     localStorage.setItem('carrito', JSON.stringify(carrito));
@@ -68,53 +78,87 @@ function comprar(id){
         className: "notificacion",
         backgroundColor:"rgba(188, 143, 143, 0.692)"
     }).showToast();
+    // contador++;
+    // contador_html.textContent=contador;
+    contarProductos();
 }
 
 function mostrarCarrito(){
-    let precioTotal=0;
-    const carrito_section=document.getElementById("carrito-preview-section");
-    carrito_section.innerHTML=`
-    <h2>Carrito</h2>`;
-    const resumen_section=document.createElement("div");
-    resumen_section.className="resumenSection";
-    const carrito=JSON.parse(localStorage.getItem('carrito'))||[];
-    if(carrito.length<1){
-        resumen_section.innerHTML+=`
-        <p>El carrito está vacío</p>
-        <button class="pink-shadow-button" onclick="cerrarCarrito()">Cerrar</button>`;
+        let precioTotal=0;
+        const carrito_section=document.getElementById("carrito-preview-section");
+        const resumen_section=document.getElementById("carrito-inner-section");
+        resumen_section.innerHTML=``;
+        //resumen_section.className="carrito-login-inner-section";
+        const carrito=JSON.parse(localStorage.getItem('carrito'))||[];
+        if(carrito.length<1){
+            resumen_section.innerHTML+=`
+            <p>El carrito está vacío</p>
+            <button class="pink-shadow-button" onclick="cerrarCarrito()">Cerrar</button>`;
+        }
+        else{
+            const table=document.createElement('table');
+            table.className="products-table";
+            table.innerHTML+=`
+            <tr>
+                <th>preview</th>
+                <th>producto</th>
+                <th>precio</th>
+                <th>cantidad</th>
+            </tr>`;
+            // ["producto", "precio", "cantidad"].forEach((title)=>{
+            //     const th=document.createElement('th');
+            //     th.innerHTML=`title`;
+            // })
+            carrito.forEach(({id, nombre, precio, cantidad, img})=>{
+                table.innerHTML+=`
+                <tr>
+                    <td><img src="${img}" width="80%"></td>
+                    <td>${nombre}</td>
+                    <td>$${precio}</td>
+                    <td>x${cantidad}</td>
+                    <td><button class="pink-shadow-button" onclick="quitarDelCarrito('${id}')">&#8722</button></td>
+                    
+                </tr>`
+                // resumen_section.innerHTML+=`
+                //     <p>- ${nombre} $${precio} x${cantidad} <button class="pink-shadow-button" onclick="quitarDelCarrito('${id}')">&#8722</button></p>
+                // `;
+                precioTotal+=(precio*cantidad);
+            });
+            resumen_section.appendChild(table);
+            resumen_section.innerHTML+=`
+            <p><b>monto total: $${precioTotal}</b></p>
+            <div class="carrito-buttons">
+                <button class="pink-shadow-button" onclick="limpiarCarrito()">Limpiar</button>
+                <button class="pink-shadow-button" onclick="cerrarCarrito()">Cerrar</button>
+            </div>
+            `;
+        }
+        carrito_section.style.width="25rem";
+        carrito_section.appendChild(resumen_section);
+        carritoVisible=true;
+    }
+
+const carrito_button=document.getElementById("carrito-button");
+carrito_button.addEventListener('click', function(){
+    if(carritoVisible){
+        cerrarCarrito();
     }
     else{
-        carrito.forEach(({id, nombre, precio, cantidad})=>{
-            carrito_section.innerHTML+=`
-                <p>- ${nombre} $${precio} x${cantidad} <button class="pink-shadow-button" onclick="quitarDelCarrito('${id}')">&#8722</button></p>
-            `;
-            precioTotal+=(precio*cantidad);
-        });
-        resumen_section.innerHTML+=`
-        <p><b>Total: $${precioTotal}</b></p>
-        <div class="carrito-buttons">
-            <button class="pink-shadow-button" onclick="limpiarCarrito()">Limpiar</button>
-            <button class="pink-shadow-button" onclick="cerrarCarrito()">Cerrar</button>
-        </div>
-        `;
+        mostrarCarrito();
     }
-    carrito_section.appendChild(resumen_section);
-    carrito_section.style.display="block"
-    carritoVisible=true;
-}
-const carrito_button=document.getElementById("carritoButton");
-carrito_button.addEventListener('click', function(){
-    mostrarCarrito();
-})
+});
 
 function quitarDelCarrito(id){
     const carrito=JSON.parse(localStorage.getItem('carrito'));
     const producto_en_carrito=carrito.find((producto)=>producto.id==id);
     producto_en_carrito.cantidad>1 ? producto_en_carrito.cantidad-- : carrito.splice(carrito.indexOf(producto_en_carrito),1);
     localStorage.setItem('carrito', JSON.stringify(carrito));
-    if(carritoVisible){
-        mostrarCarrito();
-    };
+    // if(carritoVisible){
+         mostrarCarrito();
+    // };
+    // contador--;
+    // contador_html.textContent=contador;
+    contarProductos();
 }
 
 function limpiarCarrito(){
@@ -130,9 +174,13 @@ function limpiarCarrito(){
       }).then((result) => {
         if (result.isConfirmed) {
             localStorage.clear();
+            contarProductos();
             const carrito_section=document.getElementById("carrito-preview-section");
-            carrito_section.style.display="none";
+            carrito_section.style.width="0";
             carritoVisible=false;
+            // contador=0;
+            // contador_html.textContent=contador;
+            
             Swal.fire({
                 title: "Listo!",
                 icon: "success",
@@ -140,12 +188,84 @@ function limpiarCarrito(){
             });
         }
       });
-    
-    
 }
 
 function cerrarCarrito(){
     const carrito_section=document.getElementById("carrito-preview-section");
-    carrito_section.style.display="none";
+    //carrito_section.style.display="none";
+    carrito_section.style.width="0";
     carritoVisible=false;
 }
+
+//LOGIN//
+let loginVisible=false;
+
+function abrirLogin(){
+    const login_section=document.getElementById("login-section");
+    //login_section.style.display="block";
+    login_section.style.width="25rem";
+    mostrarSignIn();
+    loginVisible=true;
+}
+function mostrarSignIn(){
+    const login_inner_section=document.getElementById("login-inner-section");
+    login_inner_section.innerHTML=`
+        <form>
+            <label for="email">email</label><br>
+            <input type="email" id="email" name="email" autocomplete="on"><br>
+            <label for="psswd">contraseña</label><br>
+            <input type="password" id="psswd" name="psswd" autocomplete="on"> <br>
+            <input type="submit" value="ingresar" class="login-form-buttons">
+        </form>
+        <a href="#">Olvidaste tu contraseña?</a>
+    `;
+    // login_section.style.transform="scale(1)";
+    // login_section.style.display="block";
+    const signup_button=document.getElementById("signup-button");
+    signup_button.className="login-buttons-unselected";
+    const signin_button=document.getElementById("signin-button");
+    signin_button.className="login-buttons-selected";
+}
+function mostrarSignUp(){
+    const login_inner_section=document.getElementById("login-inner-section");
+    login_inner_section.innerHTML=`
+        <form>
+            <label for="fullname">nombre completo</label><br>
+            <input type="text" id="fullname" name="fullname" autocomplete="on"><br>
+            <label for="email">email</label><br>
+            <input type="email" id="email" name="email" autocomplete="on"><br>
+            <label for="psswd">contraseña</label><br>
+            <input type="password" id="psswd" name="psswd" autocomplete="on"> <br>
+            <input type="submit" value="registrarme" class="login-form-buttons">
+        </form>
+        <a href="#">Ya tienes cuenta?</a>
+    `;
+    const signin_button=document.getElementById("signin-button");
+    signin_button.className="login-buttons-unselected";
+    const signup_button=document.getElementById("signup-button");
+    signup_button.className="login-buttons-selected";
+}
+function cerrarLogin(){
+    const login_section=document.getElementById("login-section");
+    login_section.style.width="0";
+    loginVisible=false;
+}
+
+const user_button=document.getElementById("user-button");
+user_button.addEventListener('click', ()=>{
+    if(loginVisible){
+        cerrarLogin();
+    }
+    else{
+        abrirLogin();
+    }
+});
+const signin_button=document.getElementById("signin-button");
+signin_button.addEventListener('click', ()=>{
+    mostrarSignIn();
+})
+const signup_button=document.getElementById("signup-button");
+signup_button.addEventListener('click', ()=>{
+    mostrarSignUp();
+})
+
