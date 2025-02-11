@@ -112,7 +112,7 @@ function mostrarCarrito(){
             carrito.forEach(({id, nombre, precio, cantidad, img})=>{
                 table.innerHTML+=`
                 <tr>
-                    <td><img src="${img}" width="80%"></td>
+                    <td><img src=".${img}" width="80%"></td>
                     <td>${nombre}</td>
                     <td>$${precio}</td>
                     <td>x${cantidad}</td>
