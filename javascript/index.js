@@ -78,8 +78,6 @@ function comprar(id){
         className: "notificacion",
         backgroundColor:"rgba(188, 143, 143, 0.692)"
     }).showToast();
-    // contador++;
-    // contador_html.textContent=contador;
     contarProductos();
 }
 
@@ -88,7 +86,6 @@ function mostrarCarrito(){
         const carrito_section=document.getElementById("carrito-preview-section");
         const resumen_section=document.getElementById("carrito-inner-section");
         resumen_section.innerHTML=``;
-        //resumen_section.className="carrito-login-inner-section";
         const carrito=JSON.parse(localStorage.getItem('carrito'))||[];
         if(carrito.length<1){
             resumen_section.innerHTML+=`
@@ -105,10 +102,6 @@ function mostrarCarrito(){
                 <th>precio</th>
                 <th>cantidad</th>
             </tr>`;
-            // ["producto", "precio", "cantidad"].forEach((title)=>{
-            //     const th=document.createElement('th');
-            //     th.innerHTML=`title`;
-            // })
             carrito.forEach(({id, nombre, precio, cantidad, img})=>{
                 table.innerHTML+=`
                 <tr>
@@ -118,10 +111,7 @@ function mostrarCarrito(){
                     <td>x${cantidad}</td>
                     <td><button class="pink-shadow-button" onclick="quitarDelCarrito('${id}')">&#8722</button></td>
                     
-                </tr>`
-                // resumen_section.innerHTML+=`
-                //     <p>- ${nombre} $${precio} x${cantidad} <button class="pink-shadow-button" onclick="quitarDelCarrito('${id}')">&#8722</button></p>
-                // `;
+                </tr>`;
                 precioTotal+=(precio*cantidad);
             });
             resumen_section.appendChild(table);
@@ -153,11 +143,7 @@ function quitarDelCarrito(id){
     const producto_en_carrito=carrito.find((producto)=>producto.id==id);
     producto_en_carrito.cantidad>1 ? producto_en_carrito.cantidad-- : carrito.splice(carrito.indexOf(producto_en_carrito),1);
     localStorage.setItem('carrito', JSON.stringify(carrito));
-    // if(carritoVisible){
          mostrarCarrito();
-    // };
-    // contador--;
-    // contador_html.textContent=contador;
     contarProductos();
 }
 
@@ -178,8 +164,6 @@ function limpiarCarrito(){
             const carrito_section=document.getElementById("carrito-preview-section");
             carrito_section.style.width="0";
             carritoVisible=false;
-            // contador=0;
-            // contador_html.textContent=contador;
             
             Swal.fire({
                 title: "Listo!",
@@ -192,7 +176,6 @@ function limpiarCarrito(){
 
 function cerrarCarrito(){
     const carrito_section=document.getElementById("carrito-preview-section");
-    //carrito_section.style.display="none";
     carrito_section.style.width="0";
     carritoVisible=false;
 }
@@ -202,7 +185,6 @@ let loginVisible=false;
 
 function abrirLogin(){
     const login_section=document.getElementById("login-section");
-    //login_section.style.display="block";
     login_section.style.width="25rem";
     mostrarSignIn();
     loginVisible=true;
@@ -219,8 +201,6 @@ function mostrarSignIn(){
         </form>
         <a href="#">Olvidaste tu contraseña?</a>
     `;
-    // login_section.style.transform="scale(1)";
-    // login_section.style.display="block";
     const signup_button=document.getElementById("signup-button");
     signup_button.className="login-buttons-unselected";
     const signin_button=document.getElementById("signin-button");

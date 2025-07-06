@@ -145,7 +145,7 @@ main{
     */
     height: 100%;
     width: 0;
-    overflow: hidden;
+    overflow-y: auto;
     background-color: rgba(250, 225, 244, 0.438);
     backdrop-filter: blur(20px);
     border: 1px solid black;
