@@ -50,9 +50,7 @@ const CartItem=()=>{
           </tfoot>
           
         </table>
-        <Button variant='outline' onClick={()=>{
-              navigate('/checkout')
-            }}>Checkout</Button>
+        <Button variant='outline' className="linen-btn" onClick={()=>{navigate('/checkout')}}>Checkout</Button>
       </Flex>
     )
 }

@@ -26,7 +26,7 @@ const ItemContainer=({product})=>{
                     </Text>
                 </Card.Body>
                 <Card.Footer gap="2" >
-                    <Button className="agregar-al-carrito" variant="solid" size='md' onClick={()=>{addToCart({product})}}>Agregar al carrito</Button>
+                    <Button className="linen-btn" variant="solid" size='md' onClick={()=>{addToCart({product})}}>Agregar al carrito</Button>
                 </Card.Footer>
             </Flex>
         </Card.Root>

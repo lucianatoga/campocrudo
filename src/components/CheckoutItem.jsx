@@ -5,10 +5,10 @@ const CheckoutItem=({handleSubmit, setSaleForm, saleForm})=>{
         <Box>
             <Heading marginBottom='2rem'>Por favor complete el formulario para finalizar</Heading>
             <form onSubmit={(e)=>handleSubmit(e)}>
-                <Input type='text' placeholder="Nombre completo" onChange={(e)=>setSaleForm({...saleForm, fullName: e.target.value})}/>
-                <Input type='email' placeholder="Email" onChange={(e)=>setSaleForm({...saleForm, email: e.target.value})}/>
-                <Input type='number' placeholder="Telefono" onChange={(e)=>setSaleForm({...saleForm, phoneNumber: e.target.value})}/>
-                <Button variant='outline' type='submit' marginTop='1rem'>Finalizar compra</Button>
+                <Input type='text' required placeholder="Nombre completo" onChange={(e)=>setSaleForm({...saleForm, fullName: e.target.value})}/>
+                <Input type='email' required placeholder="Email" onChange={(e)=>setSaleForm({...saleForm, email: e.target.value})}/>
+                <Input type='number' required placeholder="Telefono" onChange={(e)=>setSaleForm({...saleForm, phoneNumber: e.target.value})}/>
+                <Button variant='outline' className="linen-btn" type='submit' marginTop='1rem'>Finalizar compra</Button>
             </form>
         </Box>
     )
