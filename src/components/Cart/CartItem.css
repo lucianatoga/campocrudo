@@ -45,7 +45,6 @@
 
 .qty-input-bin-button {
   display: flex;
-  
   color:black;
 }
 
@@ -58,7 +57,7 @@
 }
 .qty-input button {
   border: none;
-  background-color: white;
+  background-color: ivory;
   width: 2rem;
   display: flex;
   flex-direction: row;

@@ -8,6 +8,7 @@
     overflow: hidden;
     height: 15rem;
     width: 20rem;
+    background-color: ivory;
     Button{
         position: absolute;
         left: 8rem;

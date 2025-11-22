@@ -8,7 +8,7 @@ const ItemContainer=({product})=>{
     const [i, setI]=useState(0);
     const {addToCart}=useContext(CartContext);
     return(
-         <Card.Root key={product.id} maxW="xl" className="product-card">
+         <Card.Root key={product.id} variant={'elevated'}  maxW="xl" className="product-card">
             <Flex>
                 <button onClick={()=>{i==0 ? setI(product.images.length-1) : setI(i-1)}}><IoIosArrowBack className={product.images.length>1 ? 'arrows-enabled' : 'arrows-disabled'}/></button>
                 <Image 

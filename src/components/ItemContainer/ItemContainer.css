@@ -4,6 +4,7 @@
     overflow: hidden;
     padding: .5rem;
     height: 23rem;
+    background-color: ivory;
     Image{
         max-height: 25rem;
         aspect-ratio: 3/4;
